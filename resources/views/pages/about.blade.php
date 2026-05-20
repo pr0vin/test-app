@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('title', 'About')
-@section('content')
+<x-guest-layout>
     <div>
         <!-- Hero Section -->
         <section class="bg-indigo-600 text-white py-20 text-center">
@@ -19,7 +16,8 @@
                         Over the years, we have helped businesses grow using technology.
                     </p>
                     <p class="text-gray-600">
-                        Our team focuses on clean design, strong performance, and real-world solutions that deliver value.
+                        Our team focuses on clean design, strong performance, and real-world solutions that deliver
+                        value.
                     </p>
                 </div>
                 <div>
@@ -69,4 +67,4 @@
             </button>
         </section>
     </div>
-@endsection
+</x-guest-layout>

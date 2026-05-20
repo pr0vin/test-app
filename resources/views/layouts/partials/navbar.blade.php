@@ -12,12 +12,15 @@
                 <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-600">Home</a>
                 <a href="{{ route('abouts', ['name' => 'About Us']) }}"
                     class="text-gray-700 hover:text-indigo-600">About</a>
-                <a href="{{ route('services', 2) }}" class="text-gray-700 hover:text-indigo-600">Services</a>
+                <a href="/services" class="text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="/contact" class="text-gray-700 hover:text-indigo-600">Contact</a>
                 <a href="/blogs" class="text-gray-700 hover:text-indigo-600">Blogs</a>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
-                    Login
-                </button>
+                @auth
+                    <a href="/dashboard">Dashboard</a>
+                @endauth
+                @guest
+                    <a href="{{ route('login') }}" class="p-2 bg-blue-600 text-white ">Login </a>
+                @endguest
             </div>
 
             <!-- Mobile Button -->
