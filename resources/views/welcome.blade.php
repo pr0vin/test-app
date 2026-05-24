@@ -31,12 +31,14 @@
             </div>
         </section>
 
+        <section>
+            <x-blogs :title="'Latest Blogs'"> </x-blogs>
+        </section>
+
         <!-- CTA -->
         <section class="bg-indigo-100 py-16 text-center">
             <h2 class="text-3xl font-bold mb-4">Ready to start?</h2>
-            <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">
-                Join Now
-            </button>
+            <x-my-button :color="'blue'">Get Started</x-my-button>
         </section>
     </div>
 @endsection
