@@ -9,4 +9,9 @@ class Blog extends Model
     //
 
     protected $guarded = ['id'];
+
+    public function blogCategory()
+    {
+        return $this->belongsTo(BlogCategory::class);
+    }
 }

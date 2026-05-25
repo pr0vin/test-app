@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-guest-layout>
     <h2 class="text-2xl font-bold">Blog New</h2>
 
     <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
@@ -17,6 +15,9 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
+
+        <x-category-select />
+
         <div class="mb-4">
             <label class="block text-gray-700 font-medium mb-2">
                 Image
@@ -47,4 +48,5 @@
             Submit
         </button>
     </form>
-@endsection
+
+</x-guest-layout>

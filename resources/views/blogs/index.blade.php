@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-guest-layout>
     <h2 class="text-2xl font-bold">Blog List</h2>
 
 
@@ -13,6 +11,7 @@
                 <th>SN</th>
                 <th></th>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Description</th>
                 <th></th>
             </tr>
@@ -27,6 +26,7 @@
                     <td>{{ $count++ }}</td>
                     <td><img src="{{ asset('storage/' . $blog->image) }}" alt="" width="100"></td>
                     <td>{{ $blog->title }}</td>
+                    <td>{{ $blog->blogCategory->name ?? '' }}</td>
                     <td>{{ $blog->description }}</td>
                     <td>
                         <div class="flex gap-2 ">
@@ -73,4 +73,5 @@
             background-color: #f1f1f1;
         }
     </style>
-@endsection
+
+</x-guest-layout>

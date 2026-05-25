@@ -25,6 +25,7 @@ class BlogRequest extends FormRequest
         return [
             //
             'title' => 'required',
+            'blog_category_id' => 'required',
             'description' => 'required',
         ];
     }

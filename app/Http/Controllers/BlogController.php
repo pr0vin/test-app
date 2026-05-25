@@ -6,6 +6,7 @@ use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\BlogCategory;
 
 class BlogController extends Controller
 {
@@ -13,13 +14,14 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::with(['blogCategory'])->latest()->get();
 
         return view('blogs.index', compact('blogs'));
     }
 
     public function create()
     {
+        // $categories = BlogCategory::all();
         return view('blogs.create');
     }
 
@@ -63,7 +65,8 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::find($id);
-        return view('blogs.edit', compact('blog'));
+        $categories = BlogCategory::all();
+        return view('blogs.edit', compact('blog', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -81,7 +84,8 @@ class BlogController extends Controller
         $blog->update([
             'title' => $request->title,
             'description' => $request->description,
-            'image' => isset($path) ? $path : $blog->image
+            'image' => isset($path) ? $path : $blog->image,
+            'blog_category_id' => $request->blog_category_id
 
         ]);
         return redirect()->route('blogs');
