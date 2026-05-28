@@ -28,18 +28,19 @@
                     <td>{{ $user->email ?? '' }}</td>
                     <td>
                         <div class="flex gap-2 ">
-                            <a href="{{ route('users.manage', $user->id) }}"
+                            {{-- <a href="{{ route('users.manage', $user->id) }}"
                                 class="p-2 bg-grey-600 rounded text-green-200">Profile
-                            </a>
-                            <a href="{{ route('users.edit', $user->id) }}"
-                                class="p-2 bg-blue-600 rounded text-white">Edit</a>
+                            </a> --}}
 
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                            <a href="{{ route('users.show', $user->id) }}"
+                                class="p-2 bg-blue-600 rounded text-white">view</a>
+
+                            {{-- <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" onclick="return confirm('Are you sure?')"
                                     class="p-2 bg-red-600 rounded text-white">Delete</button>
-                            </form>
+                            </form> --}}
                         </div>
                     </td>
                 </tr>
