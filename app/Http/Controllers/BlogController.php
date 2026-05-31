@@ -7,6 +7,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\BlogCategory;
+use App\Models\Tag;
 
 class BlogController extends Controller
 {
@@ -14,7 +15,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::with(['blogCategory'])->latest()->get();
+        $blogs = Blog::with(['blogCategory', 'tags'])->latest()->get();
 
         return view('blogs.index', compact('blogs'));
     }
@@ -22,7 +23,8 @@ class BlogController extends Controller
     public function create()
     {
         // $categories = BlogCategory::all();
-        return view('blogs.create');
+        $tags = Tag::all();
+        return view('blogs.create', compact('tags'));
     }
 
     public function store(BlogRequest $request)
@@ -38,6 +40,8 @@ class BlogController extends Controller
         $validated['image'] = $path;
 
         $blog = Blog::create($validated);
+
+        $blog->tags()->sync($validated['tags']);
 
         return redirect()->route('blogs')->with('success', "Blog Created Successfuly!");
     }

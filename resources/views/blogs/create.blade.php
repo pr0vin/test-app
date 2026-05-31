@@ -20,6 +20,20 @@
 
         <div class="mb-4">
             <label class="block text-gray-700 font-medium mb-2">
+                Tags
+            </label>
+            <select name="tags[]" id="" multiple
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
+
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">
                 Image
             </label>
             <input type="file" name="image" placeholder="Enter title"

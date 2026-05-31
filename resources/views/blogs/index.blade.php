@@ -12,6 +12,7 @@
                 <th></th>
                 <th>Title</th>
                 <th>Category</th>
+                <th>Tags</th>
                 <th>Description</th>
                 <th></th>
             </tr>
@@ -27,6 +28,7 @@
                     <td><img src="{{ asset('storage/' . $blog->image) }}" alt="" width="100"></td>
                     <td>{{ $blog->title }}</td>
                     <td>{{ $blog->blogCategory->name ?? '' }}</td>
+                    <td>{{ $blog->tags->pluck('name')->implode(', ') }}</td>
                     <td>{{ $blog->description }}</td>
                     <td>
                         <div class="flex gap-2 ">

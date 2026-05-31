@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogRequest extends FormRequest
+class UpdateTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,10 +24,6 @@ class BlogRequest extends FormRequest
     {
         return [
             //
-            'title' => 'required',
-            'blog_category_id' => 'required',
-            'description' => 'required',
-            'tags' => 'nullable|array',
         ];
     }
 }
