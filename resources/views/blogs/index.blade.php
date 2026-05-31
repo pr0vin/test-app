@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <h2 class="text-2xl font-bold">Blog List</h2>
 
 
@@ -76,4 +76,4 @@
         }
     </style>
 
-</x-guest-layout>
+</x-app-layout>

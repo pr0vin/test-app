@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <h2 class="text-2xl font-bold">Blog New</h2>
 
 
@@ -61,4 +61,4 @@
         </button>
     </form>
 
-</x-guest-layout>
+</x-app-layout>

@@ -45,6 +45,7 @@ Route::fallback(function () {
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('/about', [FrontController::class, 'about'])->name('abouts');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
+Route::get('/blogs/list', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
 Route::post('/blogs/store', [BlogController::class, 'store'])->name('blogs.store');
 Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
