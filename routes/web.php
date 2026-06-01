@@ -5,12 +5,20 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
+
+    $user = Auth::user();
+
+    if ($user->hasRole('user')) {
+        return redirect('/');
+    }
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
