@@ -7,7 +7,8 @@
            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ">
            {{-- <option value="">select category</option> --}}
            @foreach ($categories as $category)
-               <option value="{{ $category->id }}">{{ $category->name }}</option>
+               <option value="{{ $category->id }}" {{ $selected == $category->id ? 'selected' : '' }}>
+                   {{ $category->name }}</option>
            @endforeach
        </select>
        @error('blog_category_id')

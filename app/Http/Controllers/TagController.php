@@ -22,6 +22,7 @@ class TagController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', Tag::class);
     }
 
     /**
