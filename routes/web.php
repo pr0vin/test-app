@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SettingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -76,5 +77,9 @@ Route::prefix('users')->group(function () {
 // Route::get('/users/{user}/manage', [UserController::class, 'manage'])->name('users.manage');
 // Route::post('users/{user}/profile/store', [UserController::class, 'storeProfile'])->name('users.profile.store');
 
+
+// settings
+Route::get('/settings', [SettingController::class, 'settings'])->name('settings')->middleware('auth');
+Route::post('/settings', [SettingController::class, 'update'])->name('settings.update')->middleware('auth');
 
 require __DIR__ . '/auth.php';

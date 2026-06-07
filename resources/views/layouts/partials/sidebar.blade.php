@@ -1,7 +1,7 @@
 <aside class="bg-white shadow-lg" style="width: 220px">
     <div class="p-6 border-b">
         <h1 class="text-2xl font-bold text-gray-800">
-            {{ config('app.name', 'Laravel') }}
+            {{ settings('site_name') }}
         </h1>
     </div>
 
@@ -50,22 +50,23 @@
         </a>
 
         <!-- Settings -->
-        @hasanyrole('super-admin|accountant')
-            <a href="#" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-200 text-gray-700">
+        {{-- @hasanyrole('super-admin|accountant') --}}
+        <a href="{{ route('settings') }}"
+            class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-200 text-gray-700">
 
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
 
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10.325 4.317a1 1 0 011.35-.936l1.274.637a1 1 0 00.894 0l1.274-.637a1 1 0 011.35.936l.146 1.4a1 1 0 00.726.87l1.37.342a1 1 0 01.617 1.617l-.94 1.174a1 1 0 000 1.25l.94 1.174a1 1 0 01-.617 1.617l-1.37.342a1 1 0 00-.726.87l-.146 1.4a1 1 0 01-1.35.936l-1.274-.637a1 1 0 00-.894 0l-1.274.637a1 1 0 01-1.35-.936l-.146-1.4a1 1 0 00-.726-.87l-1.37-.342a1 1 0 01-.617-1.617l.94-1.174a1 1 0 000-1.25l-.94-1.174a1 1 0 01.617-1.617l1.37-.342a1 1 0 00.726-.87l.146-1.4z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10.325 4.317a1 1 0 011.35-.936l1.274.637a1 1 0 00.894 0l1.274-.637a1 1 0 011.35.936l.146 1.4a1 1 0 00.726.87l1.37.342a1 1 0 01.617 1.617l-.94 1.174a1 1 0 000 1.25l.94 1.174a1 1 0 01-.617 1.617l-1.37.342a1 1 0 00-.726.87l-.146 1.4a1 1 0 01-1.35.936l-1.274-.637a1 1 0 00-.894 0l-1.274.637a1 1 0 01-1.35-.936l-.146-1.4a1 1 0 00-.726-.87l-1.37-.342a1 1 0 01-.617-1.617l.94-1.174a1 1 0 000-1.25l-.94-1.174a1 1 0 01.617-1.617l1.37-.342a1 1 0 00.726-.87l.146-1.4z" />
 
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
 
-                <span>Settings</span>
-            </a>
-        @endhasanyrole
+            <span>Settings</span>
+        </a>
+        {{-- @endhasanyrole --}}
         <!-- Reports -->
         <a href="#" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-200 text-gray-700">
 

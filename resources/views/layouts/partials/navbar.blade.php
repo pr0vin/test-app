@@ -4,7 +4,7 @@
 
             <!-- Logo -->
             <div class="flex items-center">
-                <span class="text-xl font-bold text-indigo-600">MyApp</span>
+                <span class="text-xl font-bold text-indigo-600">{{ settings('site_name') }} </span>
             </div>
 
             <!-- Desktop Menu -->
