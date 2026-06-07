@@ -24,7 +24,8 @@ class BlogController extends Controller
     {
         // $categories = BlogCategory::all();
         $tags = Tag::all();
-        return view('blogs.create', compact('tags'));
+        $blog = new Blog();
+        return view('blogs.create', compact('tags', 'blog'));
     }
 
     public function store(BlogRequest $request)
@@ -69,8 +70,8 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::find($id);
-        $categories = BlogCategory::all();
-        return view('blogs.edit', compact('blog', 'categories'));
+        $tags = Tag::all();
+        return view('blogs.create', compact('blog', 'tags'));
     }
 
     public function update(Request $request, $id)
