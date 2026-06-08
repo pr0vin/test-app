@@ -24,7 +24,7 @@
 
             @foreach ($blogs as $blog)
                 <tr>
-                    <td>{{ $count++ }}</td>
+                    <td>{{ ($blogs->currentPage() - 1) * $blogs->perPage() + $loop->iteration }}</td>
                     <td><img src="{{ asset('storage/' . $blog->image) }}" alt="" width="100"></td>
                     <td>{{ $blog->title }}</td>
                     <td>{{ $blog->blogCategory->name ?? '' }}</td>
@@ -48,6 +48,10 @@
 
         </tbody>
     </table>
+
+    <div>
+        {{ $blogs->links() }}
+    </div>
 
     <style>
         table {
