@@ -12,11 +12,11 @@ class CategorySelect extends Component
     /**
      * Create a new component instance.
      */
-    public $categories, $selected;
-    public function __construct($selected = null)
+    public $categories, $selected, $label = false;
+    public function __construct($selected = null, $label = false)
     {
         //
-
+        $this->label = $label;
         $this->selected = $selected;
         $this->categories = BlogCategory::all();
     }

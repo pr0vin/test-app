@@ -13,10 +13,27 @@ class BlogController extends Controller
 {
     //
 
-    public function index()
+    private function filter($blogs, $request)
+    {
+        if ($request->title) {
+            $blogs = $blogs->where('title', 'like', '%' . $request->title . '%');
+        }
+        if ($request->blog_category_id) {
+            $blogs = $blogs->where('blog_category_id', $request->blog_category_id);
+        }
+        if ($request->sort == 'desc') {
+            $blogs = $blogs->orderBy('created_at', 'desc');
+        }
+
+        return $blogs;
+    }
+
+    public function index(Request $request)
     {
 
-        $blogs = Blog::with(['blogCategory', 'tags'])->latest()->paginate(10);
+        $blogs = Blog::with(['blogCategory', 'tags']);
+        $blogs = $this->filter($blogs, $request);
+        $blogs = $blogs->paginate(10);
 
         return view('blogs.index', compact('blogs'));
     }
