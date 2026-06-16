@@ -8,31 +8,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\BlogCategory;
 use App\Models\Tag;
+use App\Services\BlogService;
 
 class BlogController extends Controller
 {
     //
+    public $blogService;
 
-    private function filter($blogs, $request)
+    public function __construct(BlogService $blogService)
     {
-        if ($request->title) {
-            $blogs = $blogs->where('title', 'like', '%' . $request->title . '%');
-        }
-        if ($request->blog_category_id) {
-            $blogs = $blogs->where('blog_category_id', $request->blog_category_id);
-        }
-        if ($request->sort == 'desc') {
-            $blogs = $blogs->orderBy('created_at', 'desc');
-        }
-
-        return $blogs;
+        $this->blogService = $blogService;
     }
+
 
     public function index(Request $request)
     {
 
         $blogs = Blog::with(['blogCategory', 'tags']);
-        $blogs = $this->filter($blogs, $request);
+        $blogs = $this->blogService->filter($blogs, $request);
         $blogs = $blogs->paginate(10);
 
         return view('blogs.index', compact('blogs'));
@@ -51,10 +44,8 @@ class BlogController extends Controller
 
         $validated = $request->validated();
 
-        $path = null;
-        if ($request->hasFile('image')) {
-            $path = Storage::putFile('blog-images', $request->file('image'));
-        }
+
+        $path = $this->blogService->saveImage($request);
 
         $validated['image'] = $path;
 
@@ -101,7 +92,7 @@ class BlogController extends Controller
             if ($blog->image) {
                 Storage::delete($blog->image);
             }
-            $path = Storage::putFile('blog-images', $request->file('image'));
+            $path = $this->blogService->saveImage($request);
         }
 
         $blog->update([
