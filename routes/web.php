@@ -8,10 +8,19 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SettingController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/lang/change', function (Request $request) {
+
+    $locale = $request->locale;
+    // App::setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('lang.change');
 
 Route::get('/dashboard', function () {
 

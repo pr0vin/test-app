@@ -24,7 +24,6 @@
                         <x-category-select :label="true" :selected="request()->blog_category_id ?? ''" />
                     </div>
 
-
                     <div>
                         <button type="submit" class="p-2 bg-blue-600 rounded text-white">Search</button>
                     </div>

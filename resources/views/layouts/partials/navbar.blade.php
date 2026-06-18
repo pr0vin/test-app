@@ -9,9 +9,9 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-600">{{ __('nav.home') }}</a>
                 <a href="{{ route('abouts', ['name' => 'About Us']) }}"
-                    class="text-gray-700 hover:text-indigo-600">About</a>
+                    class="text-gray-700 hover:text-indigo-600">{{ __('desc.about') }}</a>
                 <a href="/services" class="text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="/contact" class="text-gray-700 hover:text-indigo-600">Contact</a>
                 <a href="/blogs" class="text-gray-700 hover:text-indigo-600">Blogs</a>
@@ -21,7 +21,17 @@
                 @guest
                     <a href="{{ route('login') }}" class="p-2 bg-blue-600 text-white ">Login </a>
                 @endguest
+
+                <form action="{{ route('lang.change') }}" method="POST">
+                    @csrf
+                    <select name="locale" id="" onchange="this.form.submit()">
+                        <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>En</option>
+                        <option value="np" {{ app()->getLocale() == 'np' ? 'selected' : '' }}>Np</option>
+                    </select>
+                </form>
+
             </div>
+
 
             <!-- Mobile Button -->
             <div class="flex items-center md:hidden">
