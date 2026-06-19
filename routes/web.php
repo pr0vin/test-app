@@ -11,13 +11,26 @@ use App\Http\Controllers\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
+
+Route::get('/send-mail', function () {
+    Mail::raw('Hello this is simple text', function ($message) {
+        $message->to('momloveyou252@gmail.com')
+            ->subject('Test Mail');
+    });
+
+    return 'Email has been sent';
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/lang/change', function (Request $request) {
 
     $locale = $request->locale;
-    // App::setLocale($locale);
+
+
     session()->put('locale', $locale);
     return redirect()->back();
 })->name('lang.change');

@@ -1,9 +1,38 @@
 <x-app-layout>
 
 
+
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #printTable,
+            #printTable * {
+                visibility: visible;
+            }
+
+            #printTable {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+
+
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+        }
+    </style>
     <div class="mb-4 flex justify-between">
         <h2 class="text-2xl font-bold">Blog List</h2>
-        <a href="{{ route('blogs.create') }}" class="p-2 bg-blue-600 rounded text-white">+ Add New</a>
+        <div>
+            <button class="p-2 bg-red-600 rounded text-white" onclick="window.print()">Print</button>
+            <a href="{{ route('blogs.create') }}" class="p-2 bg-blue-600 rounded text-white">+ Add New</a>
+        </div>
     </div>
 
 
@@ -13,7 +42,7 @@
         <div>
             <form action="{{ route('blogs.index') }}" method="get">
 
-                <div class="grid grid-cols-4 gap-3">
+                <div class="flex gap-3">
 
                     <div>
                         <input type="text" class="block border-gray-300 rounded" name="title"
@@ -33,7 +62,7 @@
             </form>
 
         </div>
-        <table border="1" class="border mt-3">
+        <table border="1" class="border mt-3" id="printTable">
             <thead>
                 <tr>
                     <th>SN</th>
@@ -42,7 +71,7 @@
                     <th>Category</th>
                     <th>Tags</th>
                     <th>Description</th>
-                    <th></th>
+                    <th class="no-print"></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +87,7 @@
                         <td>{{ $blog->blogCategory->name ?? '' }}</td>
                         <td>{{ $blog->tags->pluck('name')->implode(', ') }}</td>
                         <td>{{ $blog->description }}</td>
-                        <td>
+                        <td class="no-print">
                             <div class="flex gap-2 ">
                                 <a href="{{ route('blogs.edit', $blog->id) }}"
                                     class="p-2 bg-blue-600 rounded text-white">Edit</a>
