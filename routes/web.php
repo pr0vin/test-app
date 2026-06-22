@@ -26,6 +26,8 @@ Route::get('/send-mail', function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('blog-api', [BlogController::class, 'indexApi']);
 Route::post('/lang/change', function (Request $request) {
 
     $locale = $request->locale;

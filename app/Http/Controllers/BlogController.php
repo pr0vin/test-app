@@ -111,4 +111,9 @@ class BlogController extends Controller
         $blog->delete();
         return redirect()->route('blogs')->with('success', "Blog Dleted Successfuly!");
     }
+    public function indexApi()
+    {
+        $blogs = Blog::with(['blogCategory', 'tags'])->get();
+        return response()->json($blogs);
+    }
 }
